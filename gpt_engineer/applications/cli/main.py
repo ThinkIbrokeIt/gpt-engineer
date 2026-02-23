@@ -39,9 +39,13 @@ import openai
 import typer
 
 from dotenv import load_dotenv
-from langchain.globals import set_llm_cache
 from langchain_community.cache import SQLiteCache
 from termcolor import colored
+
+try:
+    from langchain.globals import set_llm_cache
+except ImportError:
+    from langchain_core.globals import set_llm_cache
 
 from gpt_engineer.applications.cli.cli_agent import CliAgent
 from gpt_engineer.applications.cli.collect import collect_and_send_human_review

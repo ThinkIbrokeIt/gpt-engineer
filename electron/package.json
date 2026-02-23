@@ -1,0 +1,60 @@
+{
+  "name": "gpt-engineer-electron",
+  "version": "0.1.0",
+  "description": "Electron desktop shell for GPT Engineer local web UI",
+  "author": "GPT Engineer Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gpt-engineer-org/gpt-engineer.git"
+  },
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:backend": "pwsh -ExecutionPolicy Bypass -File ./scripts/build-backend.ps1",
+    "pack": "npm run build:backend && electron-builder --dir",
+    "dist": "npm run build:backend && electron-builder --publish never"
+  },
+  "build": {
+    "appId": "org.gptengineer.desktop",
+    "productName": "GPT Engineer",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/dist",
+        "to": "backend",
+        "filter": [
+          "gpte-web-backend*",
+          "gpte-cli*"
+        ]
+      }
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://example.com/updates"
+      }
+    ]
+  },
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^24.13.3"
+  }
+}

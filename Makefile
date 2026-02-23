@@ -7,7 +7,7 @@ COLOR_CYAN=\033[1;36m
 COLOR_GREEN=\033[1;32m
 
 # Defines the targets help, install, dev-install, and run as phony targets.
-.PHONY: help install run
+.PHONY: help install run web electron
 
 #sets the default goal to help when no target is specified on the command line.
 .DEFAULT_GOAL := help
@@ -24,6 +24,8 @@ help:
 	@echo "  help           	Return this message with usage instructions."
 	@echo "  install        	Will install the dependencies using Poetry."
 	@echo "  run <folder_name>  Runs GPT Engineer on the folder with the given name."
+	@echo "  web            	Run local browser UI on http://127.0.0.1:8765."
+	@echo "  electron       	Run Electron desktop wrapper."
 
 #Defines a target named install. This target will install the project using Poetry.
 install: poetry-install install-pre-commit farewell
@@ -46,6 +48,14 @@ farewell:
 run:
 	@echo -e "$(COLOR_CYAN)Running GPT Engineer on $(COLOR_GREEN)$(name)$(COLOR_CYAN) folder...$(COLOR_RESET)" && \
 	poetry run gpt-engineer projects/$(name)
+
+web:
+	@echo -e "$(COLOR_CYAN)Starting local browser UI...$(COLOR_RESET)" && \
+	poetry run python -m gpt_engineer.applications.web_local.server --open
+
+electron:
+	@echo -e "$(COLOR_CYAN)Starting Electron wrapper...$(COLOR_RESET)" && \
+	cd electron && npm install && npm start
 
 # Counts the lines of code in the project
 cloc:

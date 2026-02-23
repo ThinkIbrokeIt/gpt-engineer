@@ -78,8 +78,14 @@ docs/tools
 # webapp specific
 webapp/node_modules
 webapp/package-lock.json
-
 webapp/.next/
+
+# Electron desktop app build artifacts
+electron/node_modules/
+electron/dist/
+electron/backend/build/
+electron/backend/dist/
+electron/*.spec
 
 .langchain.db
 

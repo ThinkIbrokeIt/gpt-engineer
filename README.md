@@ -13,13 +13,15 @@ If you are looking for the evolution that is an opinionated, managed service –
 
 If you are looking for a well maintained hackable CLI for – check out aider.
 
-
 gpt-engineer lets you:
+
 - Specify software in natural language
 - Sit back and watch as an AI writes and executes the code
 - Ask the AI to implement improvements
 
 ## Getting Started
+
+New here? Start with the step-by-step guide: [Detailed New User How-To](docs/NEW_USER_HOWTO.md).
 
 ### Install gpt-engineer
 
@@ -28,6 +30,7 @@ For **stable** release:
 - `python -m pip install gpt-engineer`
 
 For **development**:
+
 - `git clone https://github.com/gpt-engineer-org/gpt-engineer.git`
 - `cd gpt-engineer`
 - `poetry install`
@@ -38,34 +41,66 @@ We actively support Python 3.10 - 3.12. The last version to support Python 3.8 -
 ### Setup API key
 
 Choose **one** of:
+
 - Export env variable (you can add this to .bashrc so that you don't have to do it each time you start the terminal)
-    - `export OPENAI_API_KEY=[your api key]`
+  - `export OPENAI_API_KEY=[your api key]`
 - .env file:
-    - Create a copy of `.env.template` named `.env`
-    - Add your OPENAI_API_KEY in .env
+  - Create a copy of `.env.template` named `.env`
+  - Add your OPENAI_API_KEY in .env
 - Custom model:
-    - See [docs](https://gpt-engineer.readthedocs.io/en/latest/open_models.html), supports local model, azure, etc.
+  - See [docs](https://gpt-engineer.readthedocs.io/en/latest/open_models.html), supports local model, azure, etc.
 
 Check the [Windows README](./WINDOWS_README.md) for Windows usage.
 
 **Other ways to run:**
+
 - Use Docker ([instructions](docker/README.md))
 - Do everything in your browser:
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/gpt-engineer-org/gpt-engineer/codespaces)
+  [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/gpt-engineer-org/gpt-engineer/codespaces)
 
 ### Create new code (default usage)
+
 - Create an empty folder for your project anywhere on your computer
 - Create a file called `prompt` (no extension) inside your new folder and fill it with instructions
 - Run `gpte <project_dir>` with a relative path to your folder
   - For example: `gpte projects/my-new-project` from the gpt-engineer directory root with your new folder in `projects/`
 
 ### Improve existing code
+
 - Locate a folder with code which you want to improve anywhere on your computer
 - Create a file called `prompt` (no extension) inside your new folder and fill it with instructions for how you want to improve the code
 - Run `gpte <project_dir> -i` with a relative path to your folder
   - For example: `gpte projects/my-old-project -i` from the gpt-engineer directory root with your folder in `projects/`
 
+### Local browser UI (MVP)
+
+- Start the local web UI server:
+  - `python -m gpt_engineer.applications.web_local.server --open`
+- This opens `http://127.0.0.1:8765` in your browser.
+- In the UI, provide:
+  - a project folder path (must already exist)
+  - a prompt
+  - an optional model name
+- Choose LLM provider:
+  - `OpenAI`
+  - `OpenRouter` (requires API key)
+  - `Private OpenAI-compatible server` (requires base URL, optional API key)
+- Choose mode:
+  - `Generate` for first-pass creation
+  - `Improve existing project` for iterative follow-up prompts
+- The UI streams CLI output and also supports interactive input while running (e.g. send `y`/`n` for confirmations).
+
+### Electron desktop wrapper (MVP)
+
+- Install Electron dependencies:
+  - `cd electron`
+  - `npm install`
+- Run Electron:
+  - `npm start`
+- Electron launches the same local web UI and Python backend automatically.
+
 ### Benchmark custom agents
+
 - gpt-engineer installs the binary 'bench', which gives you a simple interface for benchmarking your own agent implementations against popular public datasets.
 - The easiest way to get started with benchmarking is by checking out the [template](https://github.com/gpt-engineer-org/gpte-bench-template) repo, which contains detailed instructions and an agent template.
 - Currently supported benchmark:
@@ -75,21 +110,23 @@ Check the [Windows README](./WINDOWS_README.md) for Windows usage.
 The community has started work with different benchmarking initiatives, as described in [this Loom](https://www.loom.com/share/206805143fbb4302b5455a5329eaab17?sid=f689608f-8e49-44f7-b55f-4c81e9dc93e6) video.
 
 ### Research
+
 Some of our community members have worked on different research briefs that could be taken further. See [this document](https://docs.google.com/document/d/1qmOj2DvdPc6syIAm8iISZFpfik26BYw7ZziD5c-9G0E/edit?usp=sharing) if you are interested.
 
 ## Terms
+
 By running gpt-engineer, you agree to our [terms](https://github.com/gpt-engineer-org/gpt-engineer/blob/main/TERMS_OF_USE.md).
 
-
 ## Relation to gptengineer.app (GPT Engineer)
+
 [gptengineer.app](https://gptengineer.app/) is a commercial project for the automatic generation of web apps.
 It features a UI for non-technical users connected to a git-controlled codebase.
 The gptengineer.app team is actively supporting the open source community.
 
-
 ## Features
 
 ### Pre Prompts
+
 You can specify the "identity" of the AI agent by overriding the `preprompts` folder with your own version of the `preprompts`. You can do so via the `--use-custom-preprompts` argument.
 
 Editing the `preprompts` is how you make the agent remember things between projects.
@@ -119,11 +156,9 @@ to learn how you can [contribute](.github/CONTRIBUTING.md) to it.
 gpt-engineer is [governed](https://github.com/gpt-engineer-org/gpt-engineer/blob/main/GOVERNANCE.md) by a board of long-term contributors. If you contribute routinely and have an interest in shaping the future of gpt-engineer, you will be considered for the board.
 
 ## Significant contributors
+
 <ul style="list-style-type: none; padding: 0; display: flex; flex-wrap: wrap;"> <li style="margin-right: 10px; margin-bottom: 10px;"> <a href="https://github.com/ATheorell"> <img src="https://avatars.githubusercontent.com/u/143704446?s=64&v=4" alt="@ATheorell" width="32" height="32" style="border-radius: 50%;"> @ATheorell </a> </li> <li style="margin-right: 10px; margin-bottom: 10px;"> <a href="https://github.com/similato87"> <img src="https://avatars.githubusercontent.com/u/71301573?s=64&v=4" alt="@similato87" width="32" height="32" style="border-radius: 50%;"> @similato87 </a> </li> <li style="margin-right: 10px; margin-bottom: 10px;"> <a href="https://github.com/TheoMcCabe"> <img src="https://avatars.githubusercontent.com/u/9841960?s=64&v=4" alt="@TheoMcCabe" width="32" height="32" style="border-radius: 50%;"> @TheoMcCabe </a> </li> <li style="margin-right: 10px; margin-bottom: 10px;"> <a href="https://github.com/captivus"> <img src="https://avatars.githubusercontent.com/u/366332?s=64&v=4" alt="@captivus" width="32" height="32" style="border-radius: 50%;"> @captivus </a> </li> </ul>
 
-
 ## Example
-
-
 
 https://github.com/gpt-engineer-org/gpt-engineer/assets/4467025/40d0a9a8-82d0-4432-9376-136df0d57c99

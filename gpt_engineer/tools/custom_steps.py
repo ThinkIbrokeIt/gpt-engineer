@@ -2,7 +2,10 @@ from platform import platform
 from sys import version_info
 from typing import List, Union
 
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
+try:
+    from langchain.schema import AIMessage, HumanMessage, SystemMessage
+except ImportError:
+    from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 from gpt_engineer.core.ai import AI
 from gpt_engineer.core.base_execution_env import BaseExecutionEnv

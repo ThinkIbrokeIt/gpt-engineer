@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPT Engineer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ SETUP SCREEN (first-run) ============ -->
+  <div id="setupScreen" class="screen">
+    <main class="container setup-container">
+      <h1>Welcome to GPT Engineer!</h1>
+      <p class="subtitle">Let's get you set up. This only takes a moment.</p>
+
+      <div class="setup-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Choose your AI provider</h3>
+          <p class="hint">Pick where to send your requests.</p>
+          <div class="provider-buttons" id="setupProviderBtns">
+            <button class="provider-btn selected" data-provider="openai">OpenAI</button>
+            <button class="provider-btn" data-provider="openrouter">OpenRouter</button>
+            <button class="provider-btn" data-provider="private_server">Custom Server</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Enter your API key</h3>
+          <p class="hint" id="setupKeyHint">Paste your OpenAI API key. It stays on your computer &mdash; never sent anywhere else.</p>
+          <input id="setupApiKey" type="password" placeholder="sk-..." autocomplete="off" />
+          <div id="setupBaseUrlWrap" class="hidden" style="margin-top:0.6rem;">
+            <p class="hint">Enter your server URL:</p>
+            <input id="setupBaseUrl" type="text" placeholder="http://localhost:8000/v1" />
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Pick a model <span class="optional-tag">optional</span></h3>
+          <p class="hint">Leave blank for the default.</p>
+          <input id="setupModel" type="text" placeholder="gpt-4o" />
+        </div>
+      </div>
+
+      <button id="setupDoneBtn" class="big-btn">Get Started &rarr;</button>
+      <p id="setupError" class="error-text hidden"></p>
+    </main>
+  </div>
+
+  <!-- ============ MAIN SCREEN ============ -->
+  <div id="mainScreen" class="screen hidden">
+    <main class="container">
+      <header class="top-bar">
+        <h1>GPT Engineer</h1>
+        <button id="settingsBtn" class="icon-btn" title="Settings">&#9881;</button>
+      </header>
+
+      <div class="prompt-area">
+        <label for="prompt">What do you want to build?</label>
+        <textarea id="prompt" rows="6" placeholder="Describe the app you'd like to create...&#10;&#10;For example: A to-do list app with a nice dark theme."></textarea>
+
+        <div class="mode-row">
+          <label class="mode-label">
+            <input type="radio" name="mode" value="generate" checked /> Create new project
+          </label>
+          <label class="mode-label">
+            <input type="radio" name="mode" value="improve" /> Improve existing project
+          </label>
+        </div>
+
+        <button id="runButton" class="big-btn">Build it! &#9889;</button>
+      </div>
+
+      <!-- Interaction area (hidden until a job needs input) -->
+      <div id="interactionArea" class="hidden">
+        <h2>The AI needs your input</h2>
+        <div class="row">
+          <input id="jobInput" type="text" placeholder="Type your response..." />
+        </div>
+        <div class="row buttons">
+          <button id="sendInputButton" disabled>Send</button>
+          <button id="sendYesButton" disabled>Yes</button>
+          <button id="sendNoButton" disabled>No</button>
+        </div>
+      </div>
+
+      <div id="outputArea" class="hidden">
+        <h2>Progress</h2>
+        <div id="status">Idle</div>
+        <pre id="output"></pre>
+      </div>
+    </main>
+  </div>
+
+  <!-- ============ SETTINGS MODAL ============ -->
+  <div id="settingsModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <h2>Settings</h2>
+
+      <label>AI Provider</label>
+      <div class="provider-buttons small" id="settingsProviderBtns">
+        <button class="provider-btn selected" data-provider="openai">OpenAI</button>
+        <button class="provider-btn" data-provider="openrouter">OpenRouter</button>
+        <button class="provider-btn" data-provider="private_server">Custom Server</button>
+      </div>
+
+      <label for="settingsApiKey">API Key</label>
+      <input id="settingsApiKey" type="password" placeholder="sk-..." />
+
+      <div id="settingsBaseUrlWrap" class="hidden">
+        <label for="settingsBaseUrl">Server base URL</label>
+        <input id="settingsBaseUrl" type="text" placeholder="http://localhost:8000/v1" />
+      </div>
+
+      <label for="settingsModel">Model</label>
+      <input id="settingsModel" type="text" placeholder="gpt-4o" />
+
+      <div class="modal-buttons">
+        <button id="settingsSaveBtn" class="big-btn">Save</button>
+        <button id="settingsCancelBtn" class="secondary-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

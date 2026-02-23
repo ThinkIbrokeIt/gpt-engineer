@@ -1,1 +1,2 @@
 recursive-include gpt_engineer/preprompts *
+recursive-include gpt_engineer/applications/web_local/static *

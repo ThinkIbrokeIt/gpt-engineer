@@ -1,0 +1,235 @@
+/* ===== Base ===== */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.screen { }
+.hidden { display: none !important; }
+
+/* ===== Setup screen ===== */
+.setup-container { padding-top: 3rem; text-align: center; }
+.setup-container h1 { font-size: 2rem; margin-bottom: 0.2rem; }
+.subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem; }
+
+.setup-card {
+  display: flex;
+  gap: 1rem;
+  text-align: left;
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 0.15rem;
+}
+
+.step-content { flex: 1; }
+.step-content h3 { margin: 0 0 0.3rem; }
+.optional-tag {
+  font-size: 0.75rem;
+  background: #334155;
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+.hint { color: #94a3b8; font-size: 0.88rem; margin: 0.2rem 0 0.5rem; }
+
+/* ===== Inputs & Buttons ===== */
+input, select, textarea, button {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  padding: 0.7rem;
+  font-size: 0.95rem;
+  background: #111827;
+  color: #e2e8f0;
+}
+
+textarea { resize: vertical; }
+
+button { cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.big-btn {
+  margin-top: 1.2rem;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: #3b82f6;
+  border-color: #3b82f6;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+.big-btn:hover:not(:disabled) { background: #2563eb; }
+
+.secondary-btn {
+  margin-top: 0.6rem;
+  background: transparent;
+  border-color: #475569;
+  color: #94a3b8;
+}
+.secondary-btn:hover { border-color: #64748b; color: #e2e8f0; }
+
+/* Provider selector buttons */
+.provider-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.provider-btn {
+  flex: 1;
+  padding: 0.55rem 0.3rem;
+  font-size: 0.85rem;
+  background: #111827;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.provider-btn:hover { border-color: #3b82f6; color: #e2e8f0; }
+.provider-btn.selected {
+  border-color: #3b82f6;
+  background: #1e3a5f;
+  color: #e2e8f0;
+}
+
+.provider-buttons.small .provider-btn { font-size: 0.8rem; padding: 0.45rem; }
+
+.error-text { color: #f87171; text-align: center; margin-top: 0.8rem; }
+
+/* ===== Top bar ===== */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.top-bar h1 { margin: 0; font-size: 1.5rem; }
+
+.icon-btn {
+  width: auto;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem;
+  color: #94a3b8;
+  border-radius: 6px;
+}
+.icon-btn:hover { background: #1e293b; color: #e2e8f0; }
+
+/* ===== Main screen ===== */
+.prompt-area label {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.mode-row {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0.8rem 0 0;
+}
+.mode-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  color: #94a3b8;
+  cursor: pointer;
+}
+.mode-label input[type="radio"] { accent-color: #3b82f6; }
+
+label { display: block; margin-top: 1rem; margin-bottom: 0.3rem; }
+
+.row { margin-top: 0.5rem; }
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.buttons button {
+  margin-top: 0;
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* ===== Status & output ===== */
+#status {
+  margin: 0.7rem 0;
+  padding: 0.7rem;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
+
+#output {
+  min-height: 220px;
+  max-height: 500px;
+  margin: 0;
+  padding: 1rem;
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+}
+
+/* ===== Modal ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-card {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  width: 90%;
+  max-width: 480px;
+}
+
+.modal-card h2 { margin-top: 0; }
+
+.modal-buttons {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+.modal-buttons .big-btn { flex: 1; margin-top: 0; }
+.modal-buttons .secondary-btn { flex: 1; margin-top: 0; }

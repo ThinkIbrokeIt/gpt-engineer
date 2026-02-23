@@ -47,6 +47,12 @@ Once you have a copy of the source, you can install it with:
     $ poetry shell
 
 
+Electron desktop app
+--------------------
+
+For an standalone desktop experience, see the `Electron wrapper <https://github.com/gpt-engineer-org/gpt-engineer/tree/main/electron>`_ in the repository. It bundles the local web UI and Python backend for a native feel.
+
+
 .. _Github repo: https://github.com/gpt-engineer-org/gpt-engineer.git
 
 Troubleshooting

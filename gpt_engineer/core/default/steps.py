@@ -39,7 +39,10 @@ import traceback
 from pathlib import Path
 from typing import List, MutableMapping, Union
 
-from langchain.schema import HumanMessage, SystemMessage
+try:
+    from langchain.schema import HumanMessage, SystemMessage
+except ImportError:
+    from langchain_core.messages import HumanMessage, SystemMessage
 from termcolor import colored
 
 from gpt_engineer.core.ai import AI
